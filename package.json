@@ -1,0 +1,22 @@
+{
+  "name": "ticketentry",
+  "version": "1.0.0",
+  "description": "Ticket Entry System",
+  "main": "sever/bin/www",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssysm/TicketEntry.git"
+  },
+  "keywords": [
+    "ticket"
+  ],
+  "author": "ssysm",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ssysm/TicketEntry/issues"
+  },
+  "homepage": "https://github.com/ssysm/TicketEntry#readme"
+}

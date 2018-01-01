@@ -1,0 +1,48 @@
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo">票务查询验证</a>
+  </div>
+</nav>
+<div class="container">
+  <form (ngSubmit)="lookUp(f.value)" #f="ngForm">
+  <div class="row" style="margin-top: 35px;">
+    <div class="input-field col s12">
+      <input id="password" type="text" class="validate" name="ticketNum" ngModel>
+      <label for="password">门票号</label>
+    </div>
+  </div>
+  <button class="btn waves-effect waves-light right" type="submit" name="action">查询
+    <i class="material-icons right">search</i>
+  </button>
+  </form>
+</div>
+
+
+<div class="row" *ngIf="found && res">
+  <div class="col s12 m7">
+    <div class="card">
+      <span class="card-title" style="padding: 24px;">门票信息：</span>
+      <div class="card-content">
+        <h5>持有人:<b>{{res.response.name}}</b></h5>
+        <br>
+        <h5>类型: <b *ngIf="res.response.position.table !== 'true'">坐席</b><b *ngIf="res.response.position.table == 'true'">一楼桌席</b></h5>
+        <h5>区域: <b>{{res.response.position.section}}</b></h5>
+        <h5>排/桌: <b>{{res.response.position.row}}</b></h5>
+        <h5>区域票号: <b>{{res.response.position.sectionNum}}</b></h5>
+        <br>
+        <h5>统一票号: <b>{{res.response.ticketNum}}</b></h5>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="!found && res">
+  <div class="col s12 m7">
+    <div class="card">
+      <span class="card-title" style="padding: 24px;">查询结果</span>
+      <div class="card-content">
+        <h3>未找到该门票</h3>
+        <p class="h3">门票号码: {{res.ticketNum}}</p>
+      </div>
+    </div>
+  </div>
+</div>
