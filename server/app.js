@@ -15,14 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.all('*',(req,res,next)=>{
-    "use strict";
-   if(req.hostname === "project-ticket-icn.theeditorstudio.com" || req.hostname ==='localhost' || req.hostname === '10.0.0.156'){
-       next();
-   }else{
-       res.status(403);
-   }
-});
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type");
