@@ -15,18 +15,11 @@ router.get('/', function(req, res, next) {
 
 router.post('/',(req,res,next)=>{
     "use strict";
-    Ticket.create({
-        position:{
-            table:req.body.table,
-            section:req.body.section,
-            row:req.body.row,
-            sectionNum:req.body.ticketNum
-        },
-        ticketNum:req.body.uniqueTixNum,
-        name:req.body.name
-    },(err,docs)=>{
+    Ticket.create(req.body.tixArr,(err,docs)=>{
         if(err){
-            res.send(err).status(500)
+            res.status(500).json({
+                err
+            })
         }else{
             res.json({
                 success:true,
@@ -42,7 +35,10 @@ router.post('/single',(req,res)=>{
        ticketNum:req.body.ticketNum
    },[],(err,docs)=>{
        if(err){
-          res.send(err).status(500)
+          res.status(500).json({
+              success:false,
+              err:err
+          })
        }else{
            if(!docs){
                res.json({
@@ -58,5 +54,53 @@ router.post('/single',(req,res)=>{
        }
    })
 });
+
+router.get('/filter/:table',(req,res)=>{
+    "use strict";
+    var { table } = req.params;
+    if(table !== "table"){
+        Ticket.find({
+            "position.table":false
+        }).sort({ticketNum:1}).exec((err,docs)=>{
+            if(err){
+                res.status(500).json({err})
+            }else{
+                res.json({
+                    success:true,
+                    response:docs
+                })
+            }
+        })
+    }else{
+        Ticket.find({
+            "position.table":true
+        }).sort({ticketNum:1}).exec((err,docs)=>{
+            if(err){
+                res.status(500).json({err})
+            }else{
+                res.json({
+                    success:true,
+                    response:docs
+                })
+            }
+        })
+    }
+});
+
+router.delete('/delete/:tixNum',(req,res)=>{
+    "use strict";
+    Ticket.remove({
+        ticketNum:req.params.tixNum
+    },(err,docs)=>{
+        if(err){
+            res.status(500).json({err})
+        }else{
+            res.json({
+                success:true,
+                response:docs
+            })
+        }
+    })
+})
 
 module.exports = router;

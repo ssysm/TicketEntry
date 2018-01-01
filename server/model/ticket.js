@@ -4,7 +4,7 @@ const db = mongoose.connect(require('../config').db);
 var schema = mongoose.Schema({
     position:{
         table:{
-            type:String
+            type:Boolean
         },
         section:{
             type:String
@@ -13,7 +13,7 @@ var schema = mongoose.Schema({
             type:String
         },
         sectionNum:{
-            type:String
+            type:Number
         }
     },
     ticketNum:{

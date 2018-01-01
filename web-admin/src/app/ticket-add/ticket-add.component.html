@@ -2,6 +2,11 @@
   <div>
     <p class="text-center h1">添加新票</p>
     <br>
+    <div class="input-group-prepend">
+          <span class="input-group-text">提交后重置表格
+            <input type="checkbox" aria-label="Checkbox for following text input" [(ngModel)]="checkboxValue" (change)="resetFormBox()">
+            </span>
+    </div>
     <form (ngSubmit)="addTicket(form.value)" #form="ngForm"  [formGroup]="ticketForm">
       <div class="input-group">
         <div class="input-group-prepend">
@@ -24,13 +29,18 @@
       </div>
       <div class="input-group">
         <div class="input-group-prepend" style="margin-top: 20px;">
-          <span class="input-group-text">票号</span>
-          <input type="text" id="TicketNumberDisplay" name="ticketNum"  formControlName="ticketNum" [(ngModel)]="ticketNum" class="form-control" aria-label="Text input with dropdown button">
+          <span class="input-group-text">起始票号</span>
+          <input type="number" id="TicketNumberDisplay" name="ticketNum"  formControlName="ticketNum" [(ngModel)]="ticketNum" class="form-control" aria-label="Text input with dropdown button">
         </div>
         <div class="input-group-prepend" style="margin-top: 20px;padding: 10px;">
           <span class="input-group-text">门票所属人</span>
           <input type="text" id="NameDisplay"  formControlName="name" name="name" [(ngModel)]="name" class="form-control" aria-label="Text input with dropdown button">
         </div>
+        <div class="input-group-prepend" style="margin-top: 20px;padding: 10px;">
+          <span class="input-group-text">门票数量</span>
+          <input type="number" id="TicketAmountDisplay"  formControlName="ticketAmount" name="ticketAmount" [(ngModel)]="ticketAmount" class="form-control" aria-label="Text input with dropdown button">
+        </div>
+
       </div>
       <div class="card" style="width: 50vw; align-content: center;margin-top: 25px;">
         <div class="card-body" style="text-align: center">
@@ -41,15 +51,22 @@
             <p>区域: <b>{{section}}</b></p>
             <p>排/桌次: <b>{{row}}</b></p>
             <p>区域票号: <b>{{ticketNum}}</b></p>
+            <p>数量: <b>{{ticketAmount}}</b></p>
             <br>
             <p style="display: inline">统一查询编号:</p>
             <p style="display:inline;" class="h2" *ngIf="!tableType">
               {{section+row+ticketNum}}
               <input type="hidden" [ngModel]="section+row+ticketNum" formControlName="uniqueTixNum">
             </p>
+            <p style="display:inline;" class="h2" *ngIf="!tableType&&ticketAmount > '1'">
+              - {{ticketAmount+ticketNum}}
+            </p>
             <p style="display:inline;" class="h2" *ngIf="tableType">
               {{ticketNum}}
               <input type="hidden" [(ngModel)]="ticketNum" formControlName="uniqueTixNum">
+            </p>
+            <p style="display:inline;" class="h2" *ngIf="tableType&&ticketAmount > '1'">
+              - {{ticketAmount}}
             </p>
           </div>
           <button type="submit" class="btn btn-primary" [disabled]="!ticketForm.valid">提交</button>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TicketService} from "../ticket.service";
-
+declare var swal: any;
 @Component({
   selector: 'app-ticket-add',
   templateUrl: './ticket-add.component.html',
@@ -16,6 +16,10 @@ export class TicketAddComponent implements OnInit {
   tableType:Boolean;
 
   ticketForm: FormGroup;
+  checkboxValue:boolean;
+  formClickReset: Boolean = false;
+
+  public ticketArr: Array<any> = [];
 
   ngOnInit(
   ) {
@@ -38,8 +42,16 @@ export class TicketAddComponent implements OnInit {
       ]),
       uniqueTixNum:new FormControl('',[
         Validators.required
+      ]),
+      ticketAmount:new FormControl('',[
+        Validators.required,
+        Validators.pattern("^\\d+$")
       ])
     })
+  }
+
+  resetFormBox(){
+    this.formClickReset = this.checkboxValue;
   }
 
   changeTicketType(type){
@@ -54,17 +66,65 @@ export class TicketAddComponent implements OnInit {
         break;
     }
   }
+
+  arrData(data){
+    this.ticketArr = [];
+    var startTixNum:number = parseInt(data.ticketAmount);
+    if(this.tableType){
+      for(var i = 0;startTixNum > i;i++){
+        this.ticketArr.push( {
+          position: {
+            table: this.tableType,
+            section: data.section,
+            row: data.row,
+            sectionNum: parseInt(data.ticketNum+i)
+          },
+          ticketNum: parseInt(data.ticketNum+i),
+          name: data.name
+        })
+      }
+    }else{
+      for(var i = 0;startTixNum > i;i++){
+        this.ticketArr.push({
+          position: {
+            table: this.tableType,
+            section: data.section,
+            row: data.row,
+            sectionNum: parseInt(data.ticketNum+i)
+          },
+          ticketNum: data.section+data.row+parseInt(data.ticketNum+i),
+          name: data.name
+        })
+      }
+    }
+    return this.ticketArr;
+  }
+
   addTicket(data){
-    this.ticketService.addTicket(data)
+
+    this.ticketService.addTicket({tixArr:this.arrData(data)})
       .map(res=>res.json())
       .subscribe(
         data=>{
-          alert("添加成功!")
+          swal(
+            '添加成功',
+            '已添加',
+            'success'
+          )
 
         },
         error=> {
-          alert("添加失败")
+          swal(
+            '添加失败',
+            '数据库有可能出现了已有的统一查询编号,请重新输入',
+            'error'
+          )
         })
+
+    if(this.formClickReset){
+      this.ticketForm.reset();
+    }
   }
+
 
 }

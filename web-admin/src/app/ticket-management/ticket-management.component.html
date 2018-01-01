@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <button type="button" class="btn btn-secondary " name="options"  id="option1" (click)="changeDisplayTable(true)" value="">一楼桌席</button>
+
+      <button type="button" class="btn btn-secondary active"  name="options" id="option2" (click)="changeDisplayTable(false)" value="">二三楼坐席</button>
+  </div>
+
+  <table class="table" *ngIf="displayTable">
+    <thead>
+    <tr>
+      <th scope="col">统一查询编号</th>
+      <th scope="col">区</th>
+      <th scope="col">排/桌次</th>
+      <th scope="col">门票所属人</th>
+      <th scope="col">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tix of tableArr.response;let i = index">
+      <th scope="row">{{tix.ticketNum}}</th>
+      <td>{{tix.position.section}}</td>
+      <td>{{tix.position.row}}</td>
+      <td>{{tix.name}}</td>
+      <td><a style="color: #FF0000;cursor: pointer;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table" *ngIf="!displayTable">
+    <thead>
+    <tr>
+      <th scope="col">统一查询编号</th>
+      <th scope="col">区</th>
+      <th scope="col">排/桌次</th>
+      <th scope="col">门票所属人</th>
+      <th scope="col">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tix of seatArr.response;let i = index">
+      <th scope="row">{{tix.ticketNum}}</th>
+      <td>{{tix.position.section}}</td>
+      <td>{{tix.position.row}}</td>
+      <td>{{tix.name}}</td>
+      <td><a style="color: #FF0000;cursor: pointer;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

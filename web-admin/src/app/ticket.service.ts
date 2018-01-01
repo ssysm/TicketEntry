@@ -9,14 +9,24 @@ export class TicketService {
     private http:Http
   ) { }
 
-  getTicket(){
+  filterTicket(data){
     return this.http
-      .get(environment.apiBase+'/api/ticket')
+      .get(environment.apiBase+'/api/ticket/filter/'+data)
   }
 
   addTicket(data){
     return this.http
       .post(environment.apiBase+'/api/ticket',data)
+  }
+
+  updateTicket(data){
+    return this.http
+      .patch(environment.apiBase+'/api/ticket/update',data)
+  }
+
+  deleteTicket(tixNum){
+    return this.http
+      .delete(environment.apiBase+'/api/ticket/delete/'+tixNum)
   }
 
 }
