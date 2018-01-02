@@ -17,11 +17,11 @@
     </thead>
     <tbody>
     <tr *ngFor="let tix of tableArr.response;let i = index">
-      <th scope="row">{{tix.ticketNum}}</th>
-      <td>{{tix.position.section}}</td>
-      <td>{{tix.position.row}}</td>
-      <td>{{tix.name}}</td>
-      <td><a style="color: #FF0000;cursor: pointer;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
+      <th scope="row" class="ticket-{{tix.ticketNum}}">{{tix.ticketNum}}</th>
+      <td class="ticket-{{tix.ticketNum}}">{{tix.position.section}}</td>
+      <td class="ticket-{{tix.ticketNum}}">{{tix.position.row}}</td>
+      <td class="ticket-{{tix.ticketNum}}">{{tix.name}}</td>
+      <td class="ticket-{{tix.ticketNum}}"><a style="color: #FF0000;cursor: pointer;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
     </tr>
     </tbody>
   </table>
@@ -38,11 +38,11 @@
     </thead>
     <tbody>
     <tr *ngFor="let tix of seatArr.response;let i = index">
-      <th scope="row">{{tix.ticketNum}}</th>
-      <td>{{tix.position.section}}</td>
-      <td>{{tix.position.row}}</td>
-      <td>{{tix.name}}</td>
-      <td><a style="color: #FF0000;cursor: pointer;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
+      <th scope="row" class="ticket-{{tix.ticketNum}}">{{tix.ticketNum}}</th>
+      <td class="ticket-{{tix.ticketNum}}">{{tix.position.section}}</td>
+      <td class="ticket-{{tix.ticketNum}}">{{tix.position.row}}</td>
+      <td class="ticket-{{tix.ticketNum}}">{{tix.name}}</td>
+      <td class="ticket-{{tix.ticketNum}}"><a style="color: #FF0000;cursor: pointer;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
     </tr>
     </tbody>
   </table>

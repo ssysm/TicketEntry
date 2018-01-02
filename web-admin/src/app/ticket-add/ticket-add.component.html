@@ -15,7 +15,7 @@
             <a class="dropdown-item" (click)="changeTicketType('table')">桌票</a>
             <a class="dropdown-item" (click)="changeTicketType('seat')">坐票</a>
           </div>
-          <input type="text" id="ticketTypeDisplay" disabled value="{{ticketType}}" class="form-control" aria-label="Text input with dropdown button">
+          <input type="text" id="ticketTypeDisplay" disabled formControlName="tableDisplay" value="{{ticketType}}" class="form-control" aria-label="Text input with dropdown button">
           <input type="hidden" name="table" [(ngModel)]="tableType" formControlName="table">
         </div>
         <div class="input-group-prepend" style="padding: 10px;">
@@ -58,14 +58,14 @@
               {{section+row+ticketNum}}
               <input type="hidden" [ngModel]="section+row+ticketNum" formControlName="uniqueTixNum">
             </p>
-            <p style="display:inline;" class="h2" *ngIf="!tableType&&ticketAmount > '1'">
+            <p style="display:inline;" class="h2" *ngIf="!tableType&&ticketAmount > 1">
               - {{ticketAmount+ticketNum}}
             </p>
             <p style="display:inline;" class="h2" *ngIf="tableType">
               {{ticketNum}}
               <input type="hidden" [(ngModel)]="ticketNum" formControlName="uniqueTixNum">
             </p>
-            <p style="display:inline;" class="h2" *ngIf="tableType&&ticketAmount > '1'">
+            <p style="display:inline;" class="h2" *ngIf="tableType&&ticketAmount > 1">
               - {{ticketAmount}}
             </p>
           </div>

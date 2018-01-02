@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiBase: "https://project-ticket-icn.theeditorstudio.com"
+  apiBase: "http://localhost:3000"
 };

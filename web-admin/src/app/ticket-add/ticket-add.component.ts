@@ -19,6 +19,13 @@ export class TicketAddComponent implements OnInit {
   checkboxValue:boolean;
   formClickReset: Boolean = false;
 
+  public section:string;
+  public row:string;
+  public ticketAmount:number;
+  public name:string;
+  public ticketNum:string;
+
+
   public ticketArr: Array<any> = [];
 
   ngOnInit(
@@ -46,6 +53,9 @@ export class TicketAddComponent implements OnInit {
       ticketAmount:new FormControl('',[
         Validators.required,
         Validators.pattern("^\\d+$")
+      ]),
+      tableDisplay:new FormControl('',[
+
       ])
     })
   }

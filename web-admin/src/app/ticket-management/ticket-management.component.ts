@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TicketService} from "../ticket.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+declare var jQuery: any;
 declare var swal: any;
 
 @Component({
@@ -47,9 +48,10 @@ export class TicketManagementComponent implements OnInit {
       .subscribe(data=>{
         swal(
           '删除成功',
-          '已删除,请刷新查看最新数据',
+          '已删除',
           'success'
-        )
+        );
+        jQuery(".ticket-"+i).remove();
       },error=>{
         swal(
           '删除失败',
