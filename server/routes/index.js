@@ -101,6 +101,24 @@ router.delete('/delete/:tixNum',(req,res)=>{
             })
         }
     })
+});
+
+router.patch('/update',(req,res)=>{
+    "use strict";
+    Ticket.update({
+        ticketNum:req.body.tixNum
+    },{
+        name:req.body.newName
+    },(err,docs)=>{
+        if(err){
+            res.status(500).json({err})
+        }else{
+            res.json({
+                success:true,
+                response:docs
+            })
+        }
+    })
 })
 
 module.exports = router;

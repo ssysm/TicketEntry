@@ -20,7 +20,8 @@
       <th scope="row" class="ticket-{{tix.ticketNum}}">{{tix.ticketNum}}</th>
       <td class="ticket-{{tix.ticketNum}}">{{tix.position.section}}</td>
       <td class="ticket-{{tix.ticketNum}}">{{tix.position.row}}</td>
-      <td class="ticket-{{tix.ticketNum}}">{{tix.name}}</td>
+      <td class="ticket-{{tix.ticketNum}}" id="ticket-{{tix.ticketNum}}-name">{{tix.name}}</td>
+      <td class="ticket-{{tix.ticketNum}} editBox"><input type="text"></td>
       <td class="ticket-{{tix.ticketNum}}"><a style="color: #FF0000;cursor: pointer;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
     </tr>
     </tbody>

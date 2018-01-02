@@ -61,6 +61,19 @@ export class TicketManagementComponent implements OnInit {
       })
   }
 
+  editTicket(i){
+    this.tixService.updateTicket(i)
+      .map(res => res.json())
+      .subscribe(data=>{
+        swal(
+          '更新成功',
+          '更新完毕',
+          'success'
+        )
+        jQuery("#ticket-")
+      })
+  }
+
   changeDisplayTable(t:Boolean){
     this.displayTable = t;
   }
