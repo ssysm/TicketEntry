@@ -14,7 +14,9 @@ export class TicketManagementComponent implements OnInit {
   tableArr: Array<any> = [];
   seatArr: Array<any> = [];
 
-  displayTable:Boolean;
+  displayTable:Boolean = true;
+
+  public newName: string;
 
 
   constructor(
@@ -63,7 +65,7 @@ export class TicketManagementComponent implements OnInit {
   }
 
   showEditBox(tixNum,oName){
-    jQuery('#ticket-'+tixNum+'-edit').val(oName);
+    jQuery('#ticket-'+tixNum+'-edit').val(this.newName);
     jQuery('#ticket-'+tixNum+'-edit').show();
     jQuery('#ticket-'+tixNum+'-name').hide();
     jQuery('#ticket-'+tixNum+'-bEdit').hide();

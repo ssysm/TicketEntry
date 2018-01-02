@@ -20,21 +20,25 @@
         </div>
         <div class="input-group-prepend" style="padding: 10px;">
           <span class="input-group-text">区</span>
-          <input type="text" name="section" id="SectionTypeDisplay" formControlName="section" [(ngModel)]="section" class="form-control" aria-label="Text input with dropdown button">
+          <input type="text" autocomplete="off" name="section" id="SectionTypeDisplay" formControlName="section" [(ngModel)]="section" class="form-control" aria-label="Text input with dropdown button">
         </div>
         <div class="input-group-prepend" style="padding: 10px;">
           <span class="input-group-text">排/桌次</span>
-          <input type="text" id="RowTypeDisplay" name="row"  formControlName="row" [(ngModel)]="row" class="form-control" aria-label="Text input with dropdown button">
+          <input type="text" autocomplete="off" id="RowTypeDisplay" name="row"  formControlName="row" [(ngModel)]="row" class="form-control" aria-label="Text input with dropdown button">
         </div>
       </div>
       <div class="input-group">
         <div class="input-group-prepend" style="margin-top: 20px;">
           <span class="input-group-text">起始票号</span>
-          <input type="number" id="TicketNumberDisplay" name="ticketNum"  formControlName="ticketNum" [(ngModel)]="ticketNum" class="form-control" aria-label="Text input with dropdown button">
+          <input type="number" id="TicketNumberDisplay" autocomplete="off" name="ticketNum"  formControlName="ticketNum" [(ngModel)]="ticketNum" class="form-control" aria-label="Text input with dropdown button">
         </div>
         <div class="input-group-prepend" style="margin-top: 20px;padding: 10px;">
           <span class="input-group-text">门票所属人</span>
-          <input type="text" id="NameDisplay"  formControlName="name" name="name" [(ngModel)]="name" class="form-control" aria-label="Text input with dropdown button">
+          <input type="text" id="NameDisplay"  formControlName="name" autocomplete="off" name="name" [(ngModel)]="name" class="form-control" aria-label="Text input with dropdown button">
+        </div>
+        <div class="input-group-prepend" style="padding: 10px;margin-top: 20px;">
+            <span class="input-group-text">电子邮件地址</span>
+          <input type="email" class="form-control" id="exampleInputEmail1" autocomplete="off" aria-describedby="emailHelp" placeholder="输入电邮地址" formControlName="email" [(ngModel)]="email">
         </div>
         <div class="input-group-prepend" style="margin-top: 20px;padding: 10px;">
           <span class="input-group-text">门票数量</span>
@@ -47,6 +51,7 @@
           <h5 class="card-title">票务清单</h5>
           <div class="card-text">
             <p>门票所属人: <b>{{name}}</b></p>
+            <p>电子邮件: <b>{{email}}</b></p>
             <p>座位类型: <b>{{ticketType}}</b></p>
             <p>区域: <b>{{section}}</b></p>
             <p>排/桌次: <b>{{row}}</b></p>

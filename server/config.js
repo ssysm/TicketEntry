@@ -1,3 +1,3 @@
 module.exports = {
-    db:"mongodb://admin:QWERTYUIOP@ds119565.mlab.com:19565/ticketentry"
+    db:"mongodb://localhost:27017/ticketentry"
 };
