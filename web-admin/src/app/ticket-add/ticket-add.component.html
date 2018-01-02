@@ -64,14 +64,14 @@
               <input type="hidden" [ngModel]="section+row+ticketNum" formControlName="uniqueTixNum">
             </p>
             <p style="display:inline;" class="h2" *ngIf="!tableType&&ticketAmount > 1">
-              - {{ticketAmount+ticketNum}}
+              - {{ticketAmount+ticketNum-1}}
             </p>
             <p style="display:inline;" class="h2" *ngIf="tableType">
               {{ticketNum}}
               <input type="hidden" [(ngModel)]="ticketNum" formControlName="uniqueTixNum">
             </p>
             <p style="display:inline;" class="h2" *ngIf="tableType&&ticketAmount > 1">
-              - {{ticketAmount}}
+              - {{ticketAmount-1}}
             </p>
           </div>
           <button type="submit" class="btn btn-primary" [disabled]="!ticketForm.valid">提交</button>
