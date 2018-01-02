@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TicketService} from "../ticket.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from '@angular/router';
 declare var swal: any;
 
 @Component({
@@ -16,7 +17,8 @@ export class TicketManagementComponent implements OnInit {
   displayTable:Boolean;
 
   constructor(
-    private tixService:TicketService
+    private tixService:TicketService,
+    private route:Router
   ){
 
   }
@@ -50,6 +52,7 @@ export class TicketManagementComponent implements OnInit {
           '已删除,请刷新查看最新数据',
           'success'
         )
+        this.route.navigate(['/ticket','managment']);
       },error=>{
         swal(
           '删除失败',
