@@ -19,8 +19,8 @@ router.get('/',(req,res)=>{
           };
           array.push(min);
       }
-      var csv = json2csv({ data: array, fields: fields });
-       fs.writeFile(path.join(__dirname,"../public/seat.csv"), csv, function(err,data) {
+      var csv = json2csv({ data: array, fields: fields ,withBOM: true});
+       fs.writeFile(path.join(__dirname,"../public/seat.csv"), csv, { encoding: 'utf8' },function(err,data) {
            if (err) throw err;
            res.sendFile(path.join(__dirname,"../public/seat.csv"));
        });
