@@ -83,7 +83,7 @@ export class TicketAddComponent implements OnInit {
 
   arrData(data){
     this.ticketArr = [];
-    var startTixNum:number = parseInt(data.ticketAmount);
+    var startTixNum:number = parseInt(data.ticketAmount)-1;
     if(this.tableType){
       for(var i = 0;startTixNum > i;i++){
         this.ticketArr.push( {
@@ -98,7 +98,7 @@ export class TicketAddComponent implements OnInit {
         })
       }
     }else{
-      for(var i = 0;startTixNum > i;i++){
+      for(var i = 0;startTixNum+1 > i;i++){
         this.ticketArr.push({
           position: {
             table: this.tableType,
