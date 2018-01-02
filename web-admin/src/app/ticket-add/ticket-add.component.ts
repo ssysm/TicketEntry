@@ -24,6 +24,7 @@ export class TicketAddComponent implements OnInit {
   public ticketAmount:number;
   public name:string;
   public ticketNum:string;
+  public email:string;
 
 
   public ticketArr: Array<any> = [];

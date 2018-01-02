@@ -19,6 +19,7 @@ export class TicketManagementComponent implements OnInit {
 
   public newName: string;
 
+  public email: string;
 
   constructor(
     private tixService:TicketService,
@@ -55,13 +56,8 @@ export class TicketManagementComponent implements OnInit {
           '删除成功',
           '已删除',
           'success'
-<<<<<<< HEAD
-        )
-        this.route.navigate(['/ticket','managment']);
-=======
         );
         jQuery(".ticket-"+i).remove();
->>>>>>> 043610672af2f02a01d62a54dc7a0f5232a9fe4f
       },error=>{
         swal(
           '删除失败',
