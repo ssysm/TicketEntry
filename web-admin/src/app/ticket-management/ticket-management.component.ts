@@ -16,6 +16,7 @@ export class TicketManagementComponent implements OnInit {
 
   displayTable:Boolean;
 
+
   constructor(
     private tixService:TicketService
   ){
@@ -61,7 +62,23 @@ export class TicketManagementComponent implements OnInit {
       })
   }
 
+  showEditBox(tixNum,oName){
+    jQuery('#ticket-'+tixNum+'-edit').val(oName);
+    jQuery('#ticket-'+tixNum+'-edit').show();
+    jQuery('#ticket-'+tixNum+'-name').hide();
+    jQuery('#ticket-'+tixNum+'-bEdit').hide();
+    jQuery('#ticket-'+tixNum+'-aEdit').show();
+  }
+
+  resetEdit(tixNum){
+    jQuery('#ticket-'+tixNum+'-edit').hide();
+    jQuery('#ticket-'+tixNum+'-name').show();
+    jQuery('#ticket-'+tixNum+'-bEdit').show();
+    jQuery('#ticket-'+tixNum+'-aEdit').hide();
+  }
+
   editTicket(i){
+    i.newName = jQuery('#ticket-'+i.tixNum+'-newName').val();
     this.tixService.updateTicket(i)
       .map(res => res.json())
       .subscribe(data=>{
@@ -69,8 +86,12 @@ export class TicketManagementComponent implements OnInit {
           '更新成功',
           '更新完毕',
           'success'
-        )
-        jQuery("#ticket-")
+        );
+        jQuery('#ticket-'+i.tixNum+'-name').text(i.newName);
+        jQuery('#ticket-'+i.tixNum+'-edit').hide();
+        jQuery('#ticket-'+i.tixNum+'-name').show();
+        jQuery('#ticket-'+i.tixNum+'-bEdit').show();
+        jQuery('#ticket-'+i.tixNum+'-aEdit').hide();
       })
   }
 
