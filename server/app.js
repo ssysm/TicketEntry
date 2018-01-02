@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var csvGen = require('./routes/csvGen');
 var app = express();
 
 
@@ -22,6 +22,7 @@ app.all('*', function(req, res, next) {
     next();
 });
 app.use('/api/ticket', index);
+app.use('/api/csv/ticket',csvGen);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

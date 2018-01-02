@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from '@angular/router';
 declare var jQuery: any;
 declare var swal: any;
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-ticket-management',
@@ -18,7 +19,7 @@ export class TicketManagementComponent implements OnInit {
   displayTable:Boolean = true;
 
   public newName: string;
-
+  public apiBase:string = environment.apiBase;
 
   constructor(
     private tixService:TicketService,
