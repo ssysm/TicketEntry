@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TicketService} from "../ticket.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from '@angular/router';
+declare var jQuery: any;
 declare var swal: any;
 
 @Component({
@@ -14,7 +15,10 @@ export class TicketManagementComponent implements OnInit {
   tableArr: Array<any> = [];
   seatArr: Array<any> = [];
 
-  displayTable:Boolean;
+  displayTable:Boolean = true;
+
+  public newName: string;
+
 
   constructor(
     private tixService:TicketService,
@@ -49,16 +53,54 @@ export class TicketManagementComponent implements OnInit {
       .subscribe(data=>{
         swal(
           '删除成功',
-          '已删除,请刷新查看最新数据',
+          '已删除',
           'success'
+<<<<<<< HEAD
         )
         this.route.navigate(['/ticket','managment']);
+=======
+        );
+        jQuery(".ticket-"+i).remove();
+>>>>>>> 043610672af2f02a01d62a54dc7a0f5232a9fe4f
       },error=>{
         swal(
           '删除失败',
           '请刷新页面获取最新数据',
           'error'
         )
+      })
+  }
+
+  showEditBox(tixNum,oName){
+    jQuery('#ticket-'+tixNum+'-edit').val(this.newName);
+    jQuery('#ticket-'+tixNum+'-edit').show();
+    jQuery('#ticket-'+tixNum+'-name').hide();
+    jQuery('#ticket-'+tixNum+'-bEdit').hide();
+    jQuery('#ticket-'+tixNum+'-aEdit').show();
+  }
+
+  resetEdit(tixNum){
+    jQuery('#ticket-'+tixNum+'-edit').hide();
+    jQuery('#ticket-'+tixNum+'-name').show();
+    jQuery('#ticket-'+tixNum+'-bEdit').show();
+    jQuery('#ticket-'+tixNum+'-aEdit').hide();
+  }
+
+  editTicket(i){
+    i.newName = jQuery('#ticket-'+i.tixNum+'-newName').val();
+    this.tixService.updateTicket(i)
+      .map(res => res.json())
+      .subscribe(data=>{
+        swal(
+          '更新成功',
+          '更新完毕',
+          'success'
+        );
+        jQuery('#ticket-'+i.tixNum+'-name').text(i.newName);
+        jQuery('#ticket-'+i.tixNum+'-edit').hide();
+        jQuery('#ticket-'+i.tixNum+'-name').show();
+        jQuery('#ticket-'+i.tixNum+'-bEdit').show();
+        jQuery('#ticket-'+i.tixNum+'-aEdit').hide();
       })
   }
 

@@ -1,6 +1,6 @@
 import {Injectable, OnInit} from '@angular/core';
 import {Http} from "@angular/http";
-import {environment} from "../../../web-admin/src/environments/environment";
+import {environment} from "../environments/environment";
 
 @Injectable()
 export class TicketService implements OnInit{

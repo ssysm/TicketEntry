@@ -1,8 +1,8 @@
 <div class="container">
   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <button type="button" class="btn btn-secondary " name="options"  id="option1" (click)="changeDisplayTable(true)" value="">一楼桌席</button>
+    <button type="button" class="btn btn-secondary active" name="options"  id="option1" (click)="changeDisplayTable(true)" value="">一楼桌席</button>
 
-      <button type="button" class="btn btn-secondary active"  name="options" id="option2" (click)="changeDisplayTable(false)" value="">二三楼坐席</button>
+      <button type="button" class="btn btn-secondary"  name="options" id="option2" (click)="changeDisplayTable(false)" value="">二三楼坐席</button>
   </div>
 
   <table class="table" *ngIf="displayTable">
@@ -17,11 +17,13 @@
     </thead>
     <tbody>
     <tr *ngFor="let tix of tableArr.response;let i = index">
-      <th scope="row">{{tix.ticketNum}}</th>
-      <td>{{tix.position.section}}</td>
-      <td>{{tix.position.row}}</td>
-      <td>{{tix.name}}</td>
-      <td><a style="color: #FF0000;cursor: pointer;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
+      <th scope="row" class="ticket-{{tix.ticketNum}}">{{tix.ticketNum}}</th>
+      <td class="ticket-{{tix.ticketNum}}">{{tix.position.section}}</td>
+      <td class="ticket-{{tix.ticketNum}}">{{tix.position.row}}</td>
+      <td class="ticket-{{tix.ticketNum}}" id="ticket-{{tix.ticketNum}}-name">{{tix.name}}</td>
+      <td class="ticket-{{tix.ticketNum}} editBox" id="ticket-{{tix.ticketNum}}-edit"><input type="text" required="required" id="ticket-{{tix.ticketNum}}-newName" [value]="tix.name" ></td>
+      <td class="ticket-{{tix.ticketNum}}" id="ticket-{{tix.ticketNum}}-bEdit"><a style="color: limegreen;cursor: pointer;" (click)="showEditBox(tix.ticketNum,tix.name)">修改</a><a style="color: #FF0000;cursor: pointer;margin-left: 15px;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
+      <td class="ticket-{{tix.ticketNum}}" id="ticket-{{tix.ticketNum}}-aEdit" style="display: none;"><a style="color: limegreen;cursor: pointer;" (click)="editTicket({tixNum:tix.ticketNum})">确定</a><a style="color: #FF0000;cursor: pointer;margin-left: 15px;" (click)="resetEdit(tix.ticketNum)">取消</a></td>
     </tr>
     </tbody>
   </table>
@@ -38,11 +40,13 @@
     </thead>
     <tbody>
     <tr *ngFor="let tix of seatArr.response;let i = index">
-      <th scope="row">{{tix.ticketNum}}</th>
-      <td>{{tix.position.section}}</td>
-      <td>{{tix.position.row}}</td>
-      <td>{{tix.name}}</td>
-      <td><a style="color: #FF0000;cursor: pointer;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
+      <th scope="row" class="ticket-{{tix.ticketNum}}">{{tix.ticketNum}}</th>
+      <td class="ticket-{{tix.ticketNum}}">{{tix.position.section}}</td>
+      <td class="ticket-{{tix.ticketNum}}">{{tix.position.row}}</td>
+      <td class="ticket-{{tix.ticketNum}}" id="ticket-{{tix.ticketNum}}-name">{{tix.name}}</td>
+      <td class="ticket-{{tix.ticketNum}} editBox" id="ticket-{{tix.ticketNum}}-edit"><input type="text" required="required" id="ticket-{{tix.ticketNum}}-newName" [value]="tix.name" ></td>
+      <td class="ticket-{{tix.ticketNum}}" id="ticket-{{tix.ticketNum}}-bEdit"><a style="color: limegreen;cursor: pointer;" (click)="showEditBox(tix.ticketNum,tix.name)">修改</a><a style="color: #FF0000;cursor: pointer;margin-left: 15px;" (click)="deleteTix(tix.ticketNum)">删除</a></td>
+      <td class="ticket-{{tix.ticketNum}}" id="ticket-{{tix.ticketNum}}-aEdit" style="display: none;"><a style="color: limegreen;cursor: pointer;" (click)="editTicket({tixNum:tix.ticketNum})">确定</a><a style="color: #FF0000;cursor: pointer;margin-left: 15px;" (click)="resetEdit(tix.ticketNum)">取消</a></td>
     </tr>
     </tbody>
   </table>

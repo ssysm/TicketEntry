@@ -21,7 +21,10 @@ export class TicketService {
 
   updateTicket(data){
     return this.http
-      .patch(environment.apiBase+'/api/ticket/update',data)
+      .patch(environment.apiBase+'/api/ticket/update',{
+        tixNum:data.tixNum,
+        newName:data.newName
+      })
   }
 
   deleteTicket(tixNum){

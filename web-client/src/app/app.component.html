@@ -7,7 +7,7 @@
   <form (ngSubmit)="lookUp(f.value)" #f="ngForm">
   <div class="row" style="margin-top: 35px;">
     <div class="input-field col s12">
-      <input id="tixNum" type="text" class="validate" name="ticketNum" ngModel>
+      <input id="tixNum" type="text" class="validate" name="ticketNum" ngModel autocomplete="off">
       <label for="tixNum">门票号</label>
     </div>
   </div>
@@ -35,8 +35,8 @@
     </div>
   </div>
 </div>
-<div class="row" *ngIf="!found && res">
-  <div class="col s12 m7">
+<div class="row" *ngIf="!found">
+  <div class="col s12 m7" *ngIf="res">
     <div class="card">
       <span class="card-title" style="padding: 24px;">查询结果</span>
       <div class="card-content">

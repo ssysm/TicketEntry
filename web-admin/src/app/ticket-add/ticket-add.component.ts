@@ -19,6 +19,13 @@ export class TicketAddComponent implements OnInit {
   checkboxValue:boolean;
   formClickReset: Boolean = false;
 
+  public section:string;
+  public row:string;
+  public ticketAmount:number;
+  public name:string;
+  public ticketNum:string;
+
+
   public ticketArr: Array<any> = [];
 
   ngOnInit(
@@ -46,6 +53,12 @@ export class TicketAddComponent implements OnInit {
       ticketAmount:new FormControl('',[
         Validators.required,
         Validators.pattern("^\\d+$")
+      ]),
+      tableDisplay:new FormControl('',[
+      ]),
+      email:new FormControl('',[
+        Validators.required,
+        Validators.pattern("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$")
       ])
     })
   }
