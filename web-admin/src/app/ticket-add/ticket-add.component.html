@@ -71,7 +71,7 @@
               <input type="hidden" [(ngModel)]="ticketNum" formControlName="uniqueTixNum">
             </p>
             <p style="display:inline;" class="h2" *ngIf="tableType&&ticketAmount > 1">
-              - {{ticketAmount-1}}
+              - {{ticketNum+ticketAmount -1}}
             </p>
           </div>
           <button type="submit" class="btn btn-primary" [disabled]="!ticketForm.valid">提交</button>
