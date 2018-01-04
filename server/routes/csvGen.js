@@ -4,7 +4,25 @@ var json2csv = require('json2csv');
 var Ticket = require('../model/ticket');
 var fs = require('fs');
 var path = require('path');
-router.get('/',(req,res)=>{
+var jwt = require('jsonwebtoken');
+function token_status(req, res, next) {
+    if (req.cookie.token) {
+        jwt.verify(req.cookie.token, '@#&*bhh%@$#bGG!', function (err, decoded) {
+            if (err || decoded == undefined) {
+                res.status(401).json({
+                    message: "Invaild Token"
+                })
+            } else {
+                next();
+            }
+        });
+    } else {
+        res.status(403).json({
+            message: "no token"
+        })
+    }
+}
+router.get('/',token_status,(req,res)=>{
     "use strict";
    var fields = ['SECTION','ROW','SEAT NUM','TICKET NUM','NAME'];
    var array = [];

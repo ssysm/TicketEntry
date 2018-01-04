@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {TicketManagementComponent} from "./ticket-management/ticket-management.component";
 import {TicketAddComponent} from "./ticket-add/ticket-add.component";
+import {GuardService} from "./auth/guard.service";
+import {AuthComponent} from "./auth/auth.component";
 
 
 const routes: Routes = [
@@ -10,13 +12,19 @@ const routes: Routes = [
     children:[
       {
         path:'',
-        component:TicketAddComponent
+        component:TicketAddComponent,
+        canActivate:[GuardService]
       },
       {
         path:'management',
-        component:TicketManagementComponent
+        component:TicketManagementComponent,
+        canActivate:[GuardService]
       }
     ]
+  },
+  {
+    path:'login',
+    component:AuthComponent
   }
 ];
 
