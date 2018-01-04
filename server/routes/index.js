@@ -1,8 +1,28 @@
 var express = require('express');
 var router = express.Router();
 var Ticket = require('../model/ticket');
+var jwt = require('jsonwebtoken');
 /* GET home page. */
-router.get('/', function(req, res, next) {
+
+function token_status(req, res, next) {
+    if (req.cookies.token) {
+        jwt.verify(req.cookies.token, 'ASHJUDNBIUYHK@%^$T&*^RT@$TGDUYASJGD&*@T$G^&RT@&', function (err, decoded) {
+            if (err || decoded == undefined) {
+                res.status(401).json({
+                    message: "Invaild Token"
+                })
+            } else {
+                next();
+            }
+        });
+    } else {
+        res.status(403).json({
+            message: "no token"
+        })
+    }
+}
+
+router.get('/', token_status,function(req, res, next) {
   Ticket.find({},[],(err,docs)=>{
     "use strict";
     if(err){
@@ -13,7 +33,7 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.post('/',(req,res,next)=>{
+router.post('/',token_status,(req,res,next)=>{
     "use strict";
     Ticket.create(req.body.tixArr,(err,docs)=>{
         if(err){
@@ -55,7 +75,7 @@ router.post('/single',(req,res)=>{
    })
 });
 
-router.get('/filter/:table',(req,res)=>{
+router.get('/filter/:table',token_status,(req,res)=>{
     "use strict";
     var { table } = req.params;
     if(table !== "table"){
@@ -87,7 +107,7 @@ router.get('/filter/:table',(req,res)=>{
     }
 });
 
-router.delete('/delete/:tixNum',(req,res)=>{
+router.delete('/delete/:tixNum',token_status,(req,res)=>{
     "use strict";
     Ticket.remove({
         ticketNum:req.params.tixNum
@@ -103,7 +123,7 @@ router.delete('/delete/:tixNum',(req,res)=>{
     })
 });
 
-router.patch('/update',(req,res)=>{
+router.patch('/update',token_status,(req,res)=>{
     "use strict";
     Ticket.update({
         ticketNum:req.body.tixNum
