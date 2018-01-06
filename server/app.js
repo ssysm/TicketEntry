@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", req.protocol+"://"+req.hostname+':4200');
+    res.header("Access-Control-Allow-Origin", req.get('origin'));
     res.header("Access-Control-Allow-Credentials","true");
     res.header("Access-Control-Allow-Headers", "Content-Type");
     res.header("Access-Control-Allow-Methods","GET,PUT,POST,DELETE,OPTIONS,PATCH");
