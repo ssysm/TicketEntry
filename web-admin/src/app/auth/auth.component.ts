@@ -33,14 +33,18 @@ export class AuthComponent implements OnInit {
       this.authService.login(f)
         .map(res=>res.json())
         .subscribe(data=>{
-            localStorage.setItem('loggedIn','true');
-            this.route.navigate(['/']);
+            if(data.success !== true){
+              swal(
+                '错误',
+                'error',
+                'error'
+              )
+            }else{
+              localStorage.setItem('loggedIn','true');
+              this.route.navigate(['/'])
+            }
         },error=>{
-          swal(
-            '错误',
-            'error',
-            'error'
-          )
+          
         })
   }
 
