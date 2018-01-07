@@ -25,7 +25,6 @@ router.post('/login',(req,res)=>{
                 token,
                 {
                     Domain:'.'+req.host,
-                    maxAge: 900000,
                     httpOnly: true
                 }).json({
                 success:true
