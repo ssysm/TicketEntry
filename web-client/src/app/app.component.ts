@@ -14,17 +14,4 @@ export class AppComponent {
 
   }
 
-  found:Boolean;
-  res: Object;
-
-  lookUp(value){
-    console.log(value)
-    this.tixService.findTix(value)
-      .map(res => res.json())
-      .subscribe(data=>{
-        console.log(data)
-        this.res = data;
-        this.found = data.found;
-      })
-  }
 }
