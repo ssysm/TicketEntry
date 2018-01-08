@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Ticket = require('../model/ticket');
 var jwt = require('jsonwebtoken');
+var TixLog = require('../model/tixLog');
 /* GET home page. */
 
 function token_status(req, res, next) {
@@ -66,9 +67,21 @@ router.post('/single',(req,res)=>{
                    ticketNum:req.body.ticketNum
                })
            }else{
-               res.json({
-                   found:true,
-                   response:docs
+               TixLog.findOne({
+                   ticketNum:docs.ticketNum
+               },[],(err,entry)=>{
+                   if(err){
+                       res.json({
+                           success:false,
+                           err:err
+                       }).status(500)
+                   }else{
+                       res.json({
+                           found:true,
+                           response:docs,
+                           entry: entry
+                       })
+                   }
                })
            }
        }
@@ -139,6 +152,26 @@ router.patch('/update',token_status,(req,res)=>{
             })
         }
     })
-})
+});
+
+router.post('/entry',(req,res)=>{
+    "use strict";
+    var { tixNum } = req.body;
+    TixLog.create({
+        ticketNum:tixNum
+    },(err,docs)=>{
+        if(err){
+            console.log(err);
+            res.json({
+                success:false
+            }).status(500)
+        }else{
+            res.json({
+                success:true,
+                date:docs.entry,
+            }).status(200)
+        }
+    })
+});
 
 module.exports = router;
