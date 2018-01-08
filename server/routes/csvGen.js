@@ -6,8 +6,8 @@ var fs = require('fs');
 var path = require('path');
 var jwt = require('jsonwebtoken');
 function token_status(req, res, next) {
-    if (req.cookie.token) {
-        jwt.verify(req.cookie.token, '@#&*bhh%@$#bGG!', function (err, decoded) {
+    if (req.cookies.token) {
+        jwt.verify(req.cookies.token, 'ASHJUDNBIUYHK@%^$T&*^RT@$TGDUYASJGD&*@T$G^&RT@&', function (err, decoded) {
             if (err || decoded == undefined) {
                 res.status(401).json({
                     message: "Invaild Token"
@@ -27,7 +27,7 @@ router.get('/',token_status,(req,res)=>{
    var fields = ['SECTION','ROW','SEAT NUM','TICKET NUM','NAME'];
    var array = [];
    Ticket.find({},["position.section","position.row","position.sectionNum","ticketNum","name"]).sort({ticketNum:1}).exec((err,docs)=>{
-      for(var i = 0;docs.length > i;i++){
+    for(var i = 0;docs.length > i;i++){
           var min={
               SECTION:docs[i].position.section,
               ROW:docs[i].position.row,
