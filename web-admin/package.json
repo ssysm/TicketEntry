@@ -9,9 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:prod":"ng build --prod",
-    "build:prod:allbase":"ng build --base=\"./\" --prod",
-    "build:allbase":"ng build --base=\"./\""
+    "build:prod": "ng build --prod",
+    "build:prod:allbase": "ng build --base=\"./\" --prod",
+    "build:allbase": "ng build --base=\"./\""
   },
   "private": true,
   "dependencies": {
