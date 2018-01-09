@@ -174,4 +174,27 @@ router.post('/entry',(req,res)=>{
     })
 });
 
+router.post('/lookupByName',(req,res)=>{
+    "use strict";
+    var { name } = req.body;
+    Ticket.find({
+        name:{
+            $regex:name,
+            $options:'i'
+        }
+    },["name","ticketNum"],(err,docs)=>{
+        if(err){
+            res.json({
+                success:false,
+                err:err
+            })
+        }else{
+            res.json({
+                success:true,
+                response:docs
+            })
+        }
+    })
+})
+
 module.exports = router;

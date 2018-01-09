@@ -23,4 +23,9 @@ export class TicketService implements OnInit{
       .post(environment.apiBase+'/api/ticket/entry',{tixNum:TixNum})
   }
 
+  findName(name:string){
+    return this.http
+      .post(environment.apiBase+'/api/ticket/lookupByName',{name:name})
+  }
+
 }

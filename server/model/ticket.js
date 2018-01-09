@@ -25,8 +25,9 @@ var schema = mongoose.Schema({
     },
     name:{
         type:String,
-        required:true
-    }
+        required:true,
+        index:true
+    },
 });
 const Ticket = mongoose.model('ticket', schema);
 

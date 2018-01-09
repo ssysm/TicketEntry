@@ -9,13 +9,15 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NavbarComponent } from './navbar/navbar.component';
 import { LookupComponent } from './lookup/lookup.component';
 import {RouterModule} from "@angular/router";
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LookupComponent
+    LookupComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,10 @@ import {RouterModule} from "@angular/router";
       {
         path:'lookup',
         component:LookupComponent
+      },
+      {
+        path:'search',
+        component:SearchComponent
       }
     ])
   ],

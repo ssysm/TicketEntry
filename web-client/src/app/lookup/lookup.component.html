@@ -16,7 +16,7 @@
         <span class="card-title" style="padding: 24px;">门票信息：</span>
         <div class="card-content">
           <h5>持有人:<b>{{res.response.name}}</b></h5>
-          <h5 *ngIf="res.entry"><p style="color: #0f9d58"><i class="material-icons">check</i>已在 {{res.entry.entry | date: 'hh:mm:ss dd/MM/yyyy'}} 入场</p></h5>
+          <h5 *ngIf="res.entry"><p style="color: #0f9d58"><i class="material-icons">check</i>已在{{res.entry.entry | date: 'hh点mm分ss秒 yyyy/MM/dd'}}入场</p></h5>
           <h5 *ngIf="res.entry == null" style="color: red"><i class="material-icons" style="margin-top: 4px;">close</i> 未入场 <a style="display: inline-block" class="waves-effect waves-light btn" (click)="checkIn(res.response.ticketNum)">登记入场</a></h5>
           <h5>类型: <b *ngIf="res.response.position.table !== 'true'">坐席</b><b *ngIf="res.response.position.table == 'true'">二三楼桌席</b></h5>
           <h5>区域: <b>{{res.response.position.section}}</b></h5>

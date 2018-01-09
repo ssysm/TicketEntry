@@ -41,6 +41,11 @@ export class LookupComponent implements OnInit {
               '通讯成功',
               'success'
             )
+            this.tixService.findTix({ticketNum:value})
+              .map(res=>res.json())
+              .subscribe(data2=>{
+                this.res = data2;
+              })
           }else{
             swal(
               '无法入场',

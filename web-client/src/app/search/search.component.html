@@ -1,0 +1,24 @@
+<div class="container">
+  <form (ngSubmit)="lookupByName(f.value)" #f="ngForm">
+    <div class="row" style="margin-top: 35px;">
+      <div class="input-field col s12">
+        <input id="name" type="text" class="validate" name="ticketNum" ngModel autocomplete="off">
+        <label for="name">名字</label>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light right btn-large" type="submit" name="action">查询
+      <i class="material-icons right">search</i>
+    </button>
+  </form>
+  <div class="row" *ngIf="res">
+    <div class="col s12 m12" *ngFor="let record of res">
+      <div class="card">
+        <div class="card-content">
+          <p>持有人: <b>{{record.name}}</b></p>
+          <p>票号: <b>{{record.ticketNum}}</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
