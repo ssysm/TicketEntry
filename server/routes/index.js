@@ -178,10 +178,7 @@ router.post('/lookupByName',(req,res)=>{
     "use strict";
     var { name } = req.body;
     Ticket.find({
-        name:{
-            $regex:name,
-            $options:'i'
-        }
+        name:new RegExp('^'+name+'$', "i")
     },["name","ticketNum"],(err,docs)=>{
         if(err){
             res.json({
